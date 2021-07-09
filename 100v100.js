@@ -199,7 +199,10 @@ if (fight(blueRightFormation, redRightFormation, armySize*25) === false) {
 if (battleResultsCount >= 2 ) {
   battleResults.push(`Red killed ${blueCasualty} soldiers.`);
   battleResults.push(`Blue killed ${redCasualty} soldiers.`);
-} 
+} else {
+  battleResults.push(`Red killed ${blueCasualty} soldiers.`);
+  battleResults.push(`Blue killed ${redCasualty} soldiers.`);
+}
 
 console.log(battleResults);
 
