@@ -1,5 +1,5 @@
 // setup two formations of 100 each
-let armySize = 1000;
+let armySize = 2000;
 let blueLeftFormation = [];
 let blueCenterFormation = [];
 let blueRightFormation = [];
@@ -35,7 +35,6 @@ fourDiv.textContent = 'Blue Center';
 fiveDiv.textContent = 'Red Right';
 sixDiv.textContent = 'Blue Right';
 
-
 document.getElementsByTagName('body')[0].appendChild(oneDiv);
 document.getElementsByTagName('body')[0].appendChild(twoDiv);
 document.getElementsByTagName('body')[0].appendChild(threeDiv);
@@ -46,16 +45,12 @@ document.getElementsByTagName('body')[0].append(spacer);
 spacer.style = `height: 350px;`
 document.getElementsByTagName('body')[0].append(spacer2);
 
+// draw battle lines
 oneDiv.style = `height: 10%; width: 50%; position: fixed; left: 50%; top: 0px;  background-color: red;`
-
 twoDiv.style = `height: 10%; width: 50%; position: fixed; left: 50%; top: 0px;  background-color: blue; transform: translate(-100%, 0)`
-
 threeDiv.style = `height: 10%; width: 50%; position: fixed; left: 50%; top: 100px;  background-color: red;`
-
 fourDiv.style = `height: 10%; width: 50%; position: fixed; left: 50%; top: 100px;  background-color: blue; transform: translate(-100%, 0)`
-
 fiveDiv.style = `height: 10%; width: 50%; position: fixed; left: 50%; top: 200px;  background-color: red;`
-
 sixDiv.style = `height: 10%; width: 50%; position: fixed; left: 50%; top: 200px;  background-color: blue; transform: translate(-100%, 0)`
 
 
@@ -101,6 +96,7 @@ createArmy = (formation, color, armySize) => {
   }
 }
 
+// creates armies. You can assign multipliers here to Army size if you want a thicker center, for instance. 
 createArmy(blueLeftFormation, "Blue", armySize);
 createArmy(blueCenterFormation, "Blue", armySize);
 createArmy(blueRightFormation, "Blue", armySize);
@@ -110,7 +106,6 @@ createArmy(redRightFormation, "Red", armySize);
 
 
 // fight takes the formations and uses a find() search to locate living units. Then runs a target number of times. 
-
 fight = (formation1, formation2, runTimes) => {
   for (let g = 0; g < runTimes; g++) {
     if (formation1.length > 0 && formation2.length > 0) {
@@ -166,7 +161,6 @@ fightCalc = (fighter1, fighter2, formation1, formation2) => {
 
 
 // runs battles on left, center, and right. Logs results and final # of soldiers winner killed. 
-
 battleResults.push(`Red fields ${(redLeftFormation.length + redCenterFormation.length + redRightFormation.length)} Soldiers`);
 battleResults.push(`Blue fields ${(blueLeftFormation.length + blueCenterFormation.length + blueRightFormation.length)} Soldiers`);
 battleResults.push(`The battle rages on...`);
@@ -206,6 +200,8 @@ if (battleResultsCount >= 2 ) {
 
 console.log(battleResults);
 
+
+// animates battle
 moveLeft("block", redLeftFormation, redLeftFormation[0].casualty);
 moveRight("block2", blueLeftFormation, blueLeftFormation[0].casualty);
 
@@ -215,10 +211,9 @@ moveRight("block4", blueCenterFormation, blueCenterFormation[0].casualty);
 moveLeft("block5", redRightFormation, redRightFormation[0].casualty);
 moveRight("block6", blueRightFormation, blueRightFormation[0].casualty);
 
+
+// adds battle story/ notes 
 var finalStatus = document.createElement('div');
-
 finalStatus.id = 'final';
-
 finalStatus.textContent = battleResults;
-
 document.getElementById('spacer2').append(finalStatus);
